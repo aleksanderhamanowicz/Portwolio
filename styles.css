@@ -1,0 +1,543 @@
+/* Reset i podstawowe style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --kolor-podstawowy: #3b82f6;
+  --kolor-podstawowy-ciemny: #2563eb;
+  --kolor-drugorzedny: #64748b;
+  --kolor-tekstu: #1e293b;
+  --kolor-tekstu-jasny: #64748b;
+  --kolor-tla: #ffffff;
+  --kolor-tla-jasny: #f8fafc;
+  --kolor-obramowania: #e2e8f0;
+  --cien: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --cien-duzy: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --promien-obramowania: 8px;
+  --przejscie: all 0.3s ease;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--kolor-tekstu);
+  background-color: var(--kolor-tla);
+}
+
+.kontener {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Nawigacja */
+.pasek-nawigacyjny {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--kolor-obramowania);
+  z-index: 1000;
+  transition: var(--przejscie);
+}
+
+.kontener-nawigacji {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+.logo-nawigacji {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--kolor-tekstu);
+}
+
+.logo-nawigacji i {
+  color: var(--kolor-podstawowy);
+}
+
+.menu-nawigacji {
+  display: flex;
+  gap: 2rem;
+}
+
+.link-nawigacji {
+  text-decoration: none;
+  color: var(--kolor-tekstu);
+  font-weight: 500;
+  transition: var(--przejscie);
+  position: relative;
+}
+
+.link-nawigacji:hover {
+  color: var(--kolor-podstawowy);
+}
+
+.link-nawigacji::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--kolor-podstawowy);
+  transition: var(--przejscie);
+}
+
+.link-nawigacji:hover::after {
+  width: 100%;
+}
+
+.przycisk-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.kreska {
+  width: 25px;
+  height: 3px;
+  background: var(--kolor-tekstu);
+  margin: 3px 0;
+  transition: var(--przejscie);
+}
+
+/* Sekcja główna */
+.sekcja-glowna {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px 20px;
+  background: linear-gradient(135deg, var(--kolor-tla) 0%, var(--kolor-tla-jasny) 100%);
+}
+
+.kontener-glowny {
+  max-width: 800px;
+  text-align: center;
+}
+
+.tytul-glowny {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: bold;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.wyroznienie {
+  color: var(--kolor-podstawowy);
+}
+
+.opis-glowny {
+  font-size: 1.2rem;
+  color: var(--kolor-tekstu-jasny);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.przyciski-glowne {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.przycisk {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 24px;
+  border-radius: var(--promien-obramowania);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--przejscie);
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.przycisk-podstawowy {
+  background: var(--kolor-podstawowy);
+  color: white;
+}
+
+.przycisk-podstawowy:hover {
+  background: var(--kolor-podstawowy-ciemny);
+  transform: translateY(-2px);
+}
+
+.przycisk-drugorzedny {
+  background: transparent;
+  color: var(--kolor-tekstu);
+  border-color: var(--kolor-obramowania);
+}
+
+.przycisk-drugorzedny:hover {
+  border-color: var(--kolor-podstawowy);
+  color: var(--kolor-podstawowy);
+}
+
+.przycisk-obramowany {
+  background: transparent;
+  color: var(--kolor-tekstu);
+  border-color: var(--kolor-obramowania);
+}
+
+.przycisk-obramowany:hover {
+  background: var(--kolor-podstawowy);
+  color: white;
+  border-color: var(--kolor-podstawowy);
+}
+
+.linki-spolecznosciowe {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.link-spolecznosciowy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--kolor-tla-jasny);
+  color: var(--kolor-tekstu);
+  text-decoration: none;
+  transition: var(--przejscie);
+  font-size: 1.2rem;
+}
+
+.link-spolecznosciowy:hover {
+  background: var(--kolor-podstawowy);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Style sekcji */
+section {
+  padding: 80px 0;
+}
+
+.naglowek-sekcji {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.tytul-sekcji {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.podtytul-sekcji {
+  color: var(--kolor-tekstu-jasny);
+  font-size: 1.1rem;
+}
+
+/* Sekcja o mnie */
+.sekcja-o-mnie {
+  background: var(--kolor-tla-jasny);
+}
+
+.tresc-o-mnie {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tekst-o-mnie {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.tekst-o-mnie.drugorzedny {
+  color: var(--kolor-tekstu-jasny);
+}
+
+/* Sekcja umiejętności */
+.siatka-umiejetnosci {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.karta-umiejetnosci {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--promien-obramowania);
+  box-shadow: var(--cien);
+  transition: var(--przejscie);
+}
+
+.karta-umiejetnosci:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--cien-duzy);
+}
+
+.naglowek-umiejetnosci {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.naglowek-umiejetnosci i {
+  font-size: 1.5rem;
+  color: var(--kolor-podstawowy);
+}
+
+.naglowek-umiejetnosci h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.znaczniki-umiejetnosci {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.znacznik {
+  background: var(--kolor-tla-jasny);
+  color: var(--kolor-tekstu);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Sekcja projektów */
+.sekcja-projektow {
+  background: var(--kolor-tla-jasny);
+}
+
+.siatka-projektow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.karta-projektu {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--promien-obramowania);
+  box-shadow: var(--cien);
+  transition: var(--przejscie);
+}
+
+.karta-projektu:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--cien-duzy);
+}
+
+.naglowek-projektu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.naglowek-projektu i {
+  font-size: 1.5rem;
+  color: var(--kolor-podstawowy);
+}
+
+.naglowek-projektu h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.opis-projektu {
+  color: var(--kolor-tekstu-jasny);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.znaczniki-projektu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.linki-projektu {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Sekcja kontaktu */
+.tresc-kontaktu {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.karta-kontaktu {
+  background: white;
+  padding: 3rem;
+  border-radius: var(--promien-obramowania);
+  box-shadow: var(--cien);
+  text-align: center;
+}
+
+.tekst-kontaktu {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.przyciski-kontaktu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Stopka */
+.stopka {
+  background: var(--kolor-tekstu);
+  color: white;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.sowa{
+  height: auto;
+  width: 24px;
+}
+
+/* Responsywny design */
+@media (max-width: 768px) {
+  .menu-nawigacji {
+    position: fixed;
+    left: -100%;
+    top: 60px;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    transition: var(--przejscie);
+    box-shadow: var(--cien);
+    padding: 2rem 0;
+  }
+
+  .menu-nawigacji.aktywne {
+    left: 0;
+  }
+
+  .przycisk-menu {
+    display: flex;
+  }
+
+  .przycisk-menu.aktywne .kreska:nth-child(2) {
+    opacity: 0;
+  }
+
+  .przycisk-menu.aktywne .kreska:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .przycisk-menu.aktywne .kreska:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .przyciski-glowne {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .przycisk {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
+  }
+
+  .siatka-umiejetnosci {
+    grid-template-columns: 1fr;
+  }
+
+  .siatka-projektow {
+    grid-template-columns: 1fr;
+  }
+
+  .linki-projektu {
+    flex-direction: column;
+  }
+
+  .przyciski-kontaktu {
+    gap: 1rem;
+  }
+
+  .przyciski-kontaktu .przycisk {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  .tytul-sekcji {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kontener {
+    padding: 0 15px;
+  }
+
+  .sekcja-glowna {
+    padding: 80px 15px 20px;
+  }
+
+  .karta-kontaktu {
+    padding: 2rem 1.5rem;
+  }
+
+  .karta-umiejetnosci {
+    padding: 1.5rem;
+  }
+
+  .karta-projektu {
+    padding: 1.5rem;
+  }
+}
+
+/* Płynne przewijanie */
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Animacja dla elementów pojawiających się w widoku */
+@keyframes pojawianieSieOdDolu {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pojawienie-sie {
+  animation: pojawianieSieOdDolu 0.6s ease-out;
+}

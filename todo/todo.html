@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Zadania</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+    <div class="app">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-content">
+                    <div class="header-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                        </svg>
+                    </div>
+                    <h1>Moje Zadania</h1>
+                </div>
+                <p class="date" id="currentDate"></p>
+            </div>
+
+            <!-- Main Card -->
+            <div class="main-card">
+                <!-- Form Section -->
+                <div class="form-section">
+                    <form id="todoForm" class="todo-form">
+                        <div class="form-row">
+                            <input type="text" id="titleInput" placeholder="Dodaj nowe zadanie..." class="title-input">
+                            <button type="submit" id="addButton" class="add-button" disabled>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14m-7-7h14"></path>
+                                </svg>
+                                Dodaj
+                            </button>
+                        </div>
+                        
+                        <div id="expandedForm" class="expanded-form" style="display: none;">
+                            <div class="form-group">
+                                <div class="input-with-icon">
+                                    <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path>
+                                    </svg>
+                                    <textarea id="descriptionInput" placeholder="Opis zadania (opcjonalnie)..." rows="3"></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="input-with-icon">
+                                    <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <input type="datetime-local" id="deadlineInput">
+                                </div>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" id="cancelButton" class="cancel-button">Anuluj</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="active">
+                        Aktywne <span class="tab-count" id="activeCount">0</span>
+                    </button>
+                    <button class="tab" data-tab="completed">
+                        Zrobione <span class="tab-count" id="completedCount">0</span>
+                    </button>
+                    <button class="tab" data-tab="all">
+                        Wszystkie <span class="tab-count" id="totalCount">0</span>
+                    </button>
+                </div>
+
+                <!-- Todo List -->
+                <div class="todo-list" id="todoList">
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 11l3 3L22 4"></path>
+                                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                            </svg>
+                        </div>
+                        <h3>Brak zadań</h3>
+                        <p>Dodaj swoje pierwsze zadanie powyżej</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edytuj zadanie</h2>
+                <button id="closeModal" class="close-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <form id="editForm" class="modal-form">
+                <div class="form-group">
+                    <label>Tytuł zadania</label>
+                    <input type="text" id="editTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Opis</label>
+                    <div class="input-with-icon">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path>
+                        </svg>
+                        <textarea id="editDescription" rows="4" placeholder="Opis zadania..."></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Termin wykonania</label>
+                    <div class="input-with-icon">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <input type="datetime-local" id="editDeadline">
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" id="cancelEdit" class="cancel-button">Anuluj</button>
+                    <button type="submit" class="save-button">Zapisz zmiany</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="todo.js"></script>
+</body>
+</html>
